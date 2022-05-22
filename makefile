@@ -2,11 +2,11 @@ BINARY=bin
 CODEDIRS=. lib
 INCDIRS=. ./include/
 
-CC=g++
+CC=g++ # clang++
 VERSION=c++17
 OPT=-O0
 DEPFLAGS=-MP -MD
-CFLAGS=-Wall -Werror -std=$(VERSION) -g $(foreach D,$(INCDIRS),-I$(D)) $(OPT) $(DEPFLAGS)
+CFLAGS=-Wall -Werror  -std=$(VERSION) -g $(foreach D,$(INCDIRS),-I$(D)) $(OPT) $(DEPFLAGS)
 
 CFILES=$(foreach D,$(CODEDIRS),$(wildcard $(D)/*.cpp))
 

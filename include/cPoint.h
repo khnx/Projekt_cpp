@@ -1,9 +1,11 @@
 #ifndef CLASS_CPOINT
-#define CLASS_CPOINT
+#define CLASS_CPOINT 1
 
 #include <iostream>
 
 #include "cDynamicArray.h"
+
+// -------------------- CLASS --------------------
 
 template <class T> class cPoint {
 private:
@@ -12,17 +14,17 @@ private:
 public:
   // Constructors.
   cPoint();
-  cPoint(T[], size_t);
+  cPoint(const T[], const size_t);
   cPoint(cDynamicArray<T>);
 
   // Operators.
-  cPoint<T> operator+(cPoint<T> &);
-  cPoint<T> operator-(cPoint<T> &);
-  cPoint<T> operator=(cPoint<T> &);
+  const cPoint<T> operator+(const cPoint<T> &) const;
+  const cPoint<T> operator-(const cPoint<T> &) const;
+  const cPoint<T> operator=(const cPoint<T> &);
 
   // Get/set.
-  cDynamicArray<T> get_coord();
-  bool set_coord(cDynamicArray<T> &);
+  const cDynamicArray<T> get_coord() const;
+  const bool set_coord(const cDynamicArray<T> &);
 
   // Printing.
   friend std::ostream &operator<<(std::ostream &out, cPoint<T> pt) {
@@ -44,18 +46,19 @@ template <typename T> cPoint<T>::cPoint() {
   this->coord = temp;
 }
 
-template <typename T> cPoint<T>::cPoint(T arr[], size_t siz) {
+template <typename T> cPoint<T>::cPoint(const T arr[], const size_t siz) {
   cDynamicArray<T> temp(arr, siz);
   this->coord = temp;
 }
 
-template <typename T> cPoint<T>::cPoint(cDynamicArray<T> darr) {
+template <typename T> cPoint<T>::cPoint(const cDynamicArray<T> darr) {
   this->coord = darr;
 }
 
 // -------------------- OPERATORS --------------------
 
-template <typename T> cPoint<T> cPoint<T>::operator+(cPoint<T> &pt) {
+template <typename T>
+const cPoint<T> cPoint<T>::operator+(const cPoint<T> &pt) const {
   if (this->coord.size() != pt.coord.size()) {
     std::cerr << "Error: Invalid cPoint Dimensions.";
     return *this;
@@ -70,7 +73,8 @@ template <typename T> cPoint<T> cPoint<T>::operator+(cPoint<T> &pt) {
   return temp;
 }
 
-template <typename T> cPoint<T> cPoint<T>::operator-(cPoint<T> &pt) {
+template <typename T>
+const cPoint<T> cPoint<T>::operator-(const cPoint<T> &pt) const {
   if (this->coord.size() != pt.coord.size()) {
     std::cerr << "Error: Invalid cPoint Dimensions.";
     return *this;
@@ -85,18 +89,20 @@ template <typename T> cPoint<T> cPoint<T>::operator-(cPoint<T> &pt) {
   return temp;
 }
 
-template <typename T> cPoint<T> cPoint<T>::operator=(cPoint<T> &pt) {
+template <typename T>
+const cPoint<T> cPoint<T>::operator=(const cPoint<T> &pt) {
   this->coord = pt.coord;
   return *this;
 }
 
 // -------------------- GET/SET --------------------
 
-template <typename T> cDynamicArray<T> cPoint<T>::get_coord() {
+template <typename T> const cDynamicArray<T> cPoint<T>::get_coord() const {
   return this->coord;
 }
 
-template <typename T> bool cPoint<T>::set_coord(cDynamicArray<T> &coord) {
+template <typename T>
+const bool cPoint<T>::set_coord(const cDynamicArray<T> &coord) {
   if (this->coord.size() != coord.size()) {
     std::cerr << "Error: Invalid cPoints Size. Returning Initial cPoint.\n";
     return false;

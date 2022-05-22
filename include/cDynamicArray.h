@@ -1,9 +1,10 @@
 #ifndef CLASS_CDYNAMICARRAY
-#define CLASS_CDYNAMICARRAY
+#define CLASS_CDYNAMICARRAY 1
 
 #include <cstdlib>
-#include <initializer_list>
 #include <iostream>
+
+// -------------------- CLASS --------------------
 
 template <class T> class cDynamicArray {
 private:
@@ -12,19 +13,24 @@ private:
   size_t siz; // Number of elements present in the array.
 
 public:
-  void push(T);
-  void push(T, size_t);
-  void pop();
-  void fill(T, size_t);
-  size_t size();
-  size_t get_cap();
-
-  T operator[](const size_t);
-  cDynamicArray<T> operator=(cDynamicArray<T>);
-
+  // Constructors.
   cDynamicArray();
-  cDynamicArray(T[], size_t);
+  cDynamicArray(const T[], const size_t);
+  cDynamicArray(const cDynamicArray<T> &);
 
+  // Operators.
+  const T operator[](const size_t) const;
+  const cDynamicArray<T> operator=(const cDynamicArray<T> &);
+
+  // Other.
+  void push(const T);
+  void push(const T, const size_t);
+  void pop();
+  void fill(const T, const size_t);
+  const size_t size() const;
+  const size_t get_cap() const;
+
+  // Friends.
   friend std::ostream &operator<<(std::ostream &out,
                                   const cDynamicArray<T> &arr) {
 
@@ -39,7 +45,9 @@ public:
 
     return std::cout;
   }
-};
+}; // --- cDynamicArray
+
+// -------------------- CONSTRUCTORS --------------------
 
 template <typename T> cDynamicArray<T>::cDynamicArray() {
   this->p = new T[1];
@@ -47,7 +55,8 @@ template <typename T> cDynamicArray<T>::cDynamicArray() {
   this->siz = 0;
 }
 
-template <typename T> cDynamicArray<T>::cDynamicArray(T init[], size_t siz) {
+template <typename T>
+cDynamicArray<T>::cDynamicArray(const T init[], const size_t siz) {
   this->p = new T[1];
   this->cap = 1;
   this->siz = 0;
@@ -57,7 +66,44 @@ template <typename T> cDynamicArray<T>::cDynamicArray(T init[], size_t siz) {
   }
 }
 
-template <typename T> void cDynamicArray<T>::push(T entry) {
+template <typename T>
+cDynamicArray<T>::cDynamicArray(const cDynamicArray<T> &darr) {
+  this->p = new T[1];
+  this->cap = 1;
+  this->siz = 0;
+
+  for (size_t i = 0; i < darr.siz; i++) {
+    this->push(darr.p[i]);
+  }
+}
+
+// -------------------- OPERATORS --------------------
+
+template <typename T>
+const T cDynamicArray<T>::operator[](const size_t index) const {
+  if (index >= this->siz) {
+    std::cerr << "Error: Array Index Out of Bounds. Exit Failure.\n";
+    exit(EXIT_FAILURE);
+  }
+  return this->p[index];
+}
+
+template <typename T>
+cDynamicArray<T> const
+cDynamicArray<T>::operator=(const cDynamicArray<T> &arr) {
+  for (size_t i = 0; i < arr.siz; i++) {
+    if (this->siz == i) {
+      (*this).push(arr[i]);
+    } else {
+      this->p[i] = arr[i];
+    }
+  }
+  return *this;
+}
+
+// -------------------- OTHER --------------------
+
+template <typename T> void cDynamicArray<T>::push(const T entry) {
   // No space left in the array. Allocate twice more than current size. Rewrite
   // old values to new array.
   if (this->siz == this->cap) {
@@ -77,7 +123,8 @@ template <typename T> void cDynamicArray<T>::push(T entry) {
   siz++;
 }
 
-template <typename T> void cDynamicArray<T>::push(T entry, size_t index) {
+template <typename T>
+void cDynamicArray<T>::push(const T entry, const size_t index) {
   if (index == this->cap) {
     push(entry);
   } else {
@@ -87,7 +134,8 @@ template <typename T> void cDynamicArray<T>::push(T entry, size_t index) {
 
 template <typename T> void cDynamicArray<T>::pop() { this->siz--; }
 
-template <typename T> void cDynamicArray<T>::fill(T value, size_t siz) {
+template <typename T>
+void cDynamicArray<T>::fill(const T value, const size_t siz) {
   for (size_t i = 0; i < siz; i++) {
     if (i == this->siz) {
       push(value);
@@ -97,28 +145,12 @@ template <typename T> void cDynamicArray<T>::fill(T value, size_t siz) {
   }
 }
 
-template <typename T> size_t cDynamicArray<T>::size() { return this->siz; }
-
-template <typename T> size_t cDynamicArray<T>::get_cap() { return this->cap; }
-
-template <typename T> T cDynamicArray<T>::operator[](const size_t index) {
-  if (index >= this->siz) {
-    std::cerr << "Error: Array Index Out of Bounds. Exit Failure.\n";
-    exit(EXIT_FAILURE);
-  }
-  return this->p[index];
+template <typename T> const size_t cDynamicArray<T>::size() const {
+  return this->siz;
 }
 
-template <typename T>
-cDynamicArray<T> cDynamicArray<T>::operator=(cDynamicArray<T> arr) {
-  for (size_t i = 0; i < arr.siz; i++) {
-    if (this->siz == i) {
-      (*this).push(arr[i]);
-    } else {
-      this->p[i] = arr[i];
-    }
-  }
-  return *this;
+template <typename T> const size_t cDynamicArray<T>::get_cap() const {
+  return this->cap;
 }
 
 #endif
