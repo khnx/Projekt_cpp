@@ -39,6 +39,8 @@ Po kilku sekundach Chocolatey powinien być zainstalowany. Aby to sprawdzić, na
   choco -?
   ```
 
+## Instalacja make
+
 Skoro Chocolatey jest już zainstalowany, można zainstalować make.
 
 Należy wpisać w PowerShell:
@@ -61,6 +63,42 @@ Dalej, w PowerShell (upewnij się, że jesteś w folderze, w którym znajduje si
   make
   ```
 
-## Linux, Mac
+# Linux, Mac
 
 Użytkownik powinien wiedzieć, jak używać make.
+
+# Używanie make
+
+Dostępne są 3 warianty wykonania pliku makefile.
+
+1. Tylko kompilacja programu:
+
+  ```bash
+  make
+  ```
+
+lub
+
+  ```bash
+  make all
+  ```
+
+2. Kompilacja i uruchomienie:
+
+  ```bash
+  make run
+  ```
+
+3. Wyczyszczenie starych plików .d .o:
+
+  ```bash
+  make clean
+  ```
+
+4. Polecenia można łączyć, np.:
+
+  ```bash
+  clear && make clean run
+  ```
+
+Wywoła polecenia basha `clean`, a nastepnie usunie wszystkie stare pliki .d oraz .o, by skompilować program na nowo i go wywołać.
