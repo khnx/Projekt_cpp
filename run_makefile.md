@@ -101,4 +101,4 @@ lub
   clear && make clean run
   ```
 
-Wywoła polecenia basha `clean`, a nastepnie usunie wszystkie stare pliki .d oraz .o, by skompilować program na nowo i go wywołać.
+Wywoła polecenia basha `clear`, a nastepnie usunie wszystkie stare pliki .d oraz .o, by skompilować program na nowo i go wywołać.
