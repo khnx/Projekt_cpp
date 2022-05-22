@@ -21,10 +21,6 @@
 	- mnożenie liczby przez wektor
 	- długość wektora
 
-## Pytania ogólne
-
-1. Jakie typy powinny być wspierane przez szablony?
-
 ## Punkt
 
 1. Cechy.
