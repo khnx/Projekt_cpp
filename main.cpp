@@ -1,6 +1,8 @@
 #include <complex>
 #include <iostream>
 
+#include <vector>
+
 #include "include/cDynamicArray.h"
 #include "include/cPoint.h"
 #include "include/cVector.h"
