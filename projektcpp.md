@@ -71,7 +71,8 @@
 	- Mnożenie wektorowe z użyciem kąta między wektorami (wektor z 3 składnikami).
 	- Mnożenie wektorowe ze wzoru Sarrusa (wektor z 3 składnikami).
 	- Wektor przeciwny - odwrócenie znaków współrzędnych wektora.
-	- Długość wektora - norma.
+	- Długość wektora - pierwiastek normy.
+	- Norma
 
 4. Metody.
 
