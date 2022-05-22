@@ -27,22 +27,11 @@
 
 ## Punkt
 
-1. Podobny do klasy liczby zespolone.
+1. Cechy.
 
-	- Czy obsługuje liczby zespolone?
-	- Czy potrzebna klasa "liczby zespolone", czy użyć biblioteki complex?
+	- Trzyma współrzędne w dynamicznej tablicy.
 
-2. Zawiera 3 opcjonalne współrzędne.
-
-	- Czy współrzędne powinny być przekazywane "na sztywno", tj. 3 argumenty, z wartościami domyślnymi.
-	- II opcja: przekazanie wartości współrzędnych przez obiekt klasy vector lub listę inicjalizacyjną; zmienna ilość parametrów bez obciążenia pustymi wartościami.
-
-3. Pozycja domyślna to początek układu współrzednych.
-
-	- Użyć domyślnego początku?
-	- Początek dla układu lini prostej, płaszczyzny, przestrzeni?
-
-4. Dozwolone operacje.
+2. Dozwolone operacje.
 
 	- Dodawanie.
 	- Odejmowanie.
