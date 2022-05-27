@@ -62,6 +62,9 @@ Dalej, w PowerShell (upewnij się, że jesteś w folderze, w którym znajduje si
   ```powershell
   make
   ```
+## Instalacja g++
+
+Follow an online tutorial, like this one: https://www.youtube.com/watch?v=8CNRX1Bk5sY or any else tutorial.
 
 # Linux, Mac
 

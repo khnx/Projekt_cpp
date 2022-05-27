@@ -1,3 +1,5 @@
+#include "cVector.h"
+
 // -------------------- CONSTRUCTORS --------------------
 
 template <typename T> cVector<T>::cVector(const cDynamicArray<T> &darr) {
@@ -168,6 +170,11 @@ const T cVector<T>::dot_product(const cVector<T> &v, const T theta) const {
 template <typename T>
 const T cVector<T>::cross_product_theta(const cVector<T> &v,
                                         const T theta) const {
+  if (this->vec.size() != v.vec.size()) {
+    std::cerr
+        << "\nError: Invalid Dimensions of Vectors in cross_product_theta().\n";
+    return 0;
+  }
   T temp = (*this).abs() * v.abs() * sin(theta);
   return temp;
 }
@@ -178,7 +185,7 @@ const cVector<T> cVector<T>::cross_product(const cVector<T> &v) const {
     std::cerr << "\nError: Invalid Dimensions of Vectors in cross_product().\n";
     cVector<T> temp(*this);
     temp.vec.fill(0, this->vec.size());
-    return *this;
+    return temp;
   }
   if (this->vec.size() != 3) {
     cVector<T> temp(*this);
@@ -197,3 +204,11 @@ const cVector<T> cVector<T>::cross_product(const cVector<T> &v) const {
 
   return temp;
 }
+
+// -------------------- TYPES --------------------
+
+template class cVector<int>;
+template class cVector<long>;
+template class cVector<long long>;
+template class cVector<float>;
+template class cVector<double>;

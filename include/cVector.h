@@ -42,7 +42,7 @@ public:
   const cVector<T> cross_product(const cVector<T> &) const;
 
   // Friends.
-  friend cVector<T> operator*(T scalar, cVector<T> &v) {
+  friend const cVector<T> operator*(const T scalar, const cVector<T> &v) {
 
     cVector temp(v.vec);
     temp.vec.fill(0, v.vec.size());
@@ -65,7 +65,5 @@ public:
     return std::cout;
   }
 };
-
-#include "../lib/cVector.tpp"
 
 #endif
