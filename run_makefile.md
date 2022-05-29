@@ -11,33 +11,33 @@ Alternatywnie, włączyć program PowerShell jako administrator. W Start wpisuje
 
 W PowerShellu wpisać polecenie
 
-   ``` powershell
-   Get-ExecutionPolicy
-   ```
+``` powershell
+Get-ExecutionPolicy
+```
 
 Jeżeli program odpowie "Restricted", wpisać
 
-  ```powershell
-  Set-ExecutionPolicy AllSigned
-  ```
+```powershell
+Set-ExecutionPolicy AllSigned
+```
 
 Następnie wpisać
 
-  ```powershell
-  Y
-  ```
+```powershell
+Y
+```
 
 Dalej, wkleić podane polecenie:
 
-  ```powershell
-  Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-  ```
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
   
 Po kilku sekundach Chocolatey powinien być zainstalowany. Aby to sprawdzić, należy wpisać:
 
-  ```powershell
-  choco -?
-  ```
+```powershell
+choco -?
+```
 
 ## Instalacja make
 
@@ -45,23 +45,24 @@ Skoro Chocolatey jest już zainstalowany, można zainstalować make.
 
 Należy wpisać w PowerShell:
 
-   ```powershell
-   choco install make
-   ```
+```powershell
+choco install make
+```
   
 Make jest już zainstalowany.
 
 Aby teraz odpalić program, zamknij sesję PowerShell (nie ma potrzeby, by dłużej używać go jako administrator) i włącz PowerShell (jako zwykły użytkownik - czyli domyślnie). Nawiguj do odpowiedniego folderu poleceniem cd, np.:
 
-  ```powershell
-  cd "C:\Users\radek\Desktop\studia_cpp-main\projekt\"
-  ```
+```powershell
+cd "C:\Users\radek\Desktop\studia_cpp-main\projekt\"
+```
   
 Dalej, w PowerShell (upewnij się, że jesteś w folderze, w którym znajduje się plik makefile) wpisz
 
-  ```powershell
-  make
-  ```
+```powershell
+make
+```
+
 ## Instalacja g++
 
 Follow an online tutorial, like this one: https://www.youtube.com/watch?v=8CNRX1Bk5sY or any else tutorial.
@@ -76,32 +77,32 @@ Dostępne są 3 warianty wykonania pliku makefile.
 
 1. Tylko kompilacja programu:
 
-  ```bash
-  make
-  ```
+```bash
+make
+```
 
 lub
 
-  ```bash
-  make all
-  ```
+```bash
+make all
+```
 
 2. Kompilacja i uruchomienie:
 
-  ```bash
-  make run
-  ```
+```bash
+make run
+```
 
 3. Wyczyszczenie starych plików .d .o:
 
-  ```bash
-  make clean
-  ```
+```bash
+make clean
+```
 
 4. Polecenia można łączyć, np.:
 
-  ```bash
-  clear && make clean run
-  ```
+```bash
+clear && make clean run
+```
 
 Wywoła polecenia basha `clear`, a nastepnie usunie wszystkie stare pliki .d oraz .o, by skompilować program na nowo i go wywołać.
