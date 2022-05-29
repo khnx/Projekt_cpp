@@ -1,7 +1,6 @@
 #include <complex>
 #include <iostream>
-
-#include <vector>
+#include <stdexcept>
 
 #include "include/cDynamicArray.h"
 #include "include/cPoint.h"
@@ -9,30 +8,23 @@
 
 int main() {
 
-  const double a[] = {1, 22, 45};
-  const double b[] = {11, 5, 39};
-  const double c[] = {-1, 6, 5};
-  const double d[] = {7, 95, 9};
-
-  cPoint<double> p1(a, sizeof(a) / sizeof(double));
-  cPoint<double> p2(b, sizeof(b) / sizeof(double));
-  cPoint<double> p3(c, sizeof(c) / sizeof(double));
-  cPoint<double> p4(d, sizeof(d) / sizeof(double));
-
-  cDynamicArray<double> darr;
-  darr.fill(2.3, 2);
-  darr.push(5, 1);
-
-  cVector<double> v1(p1, p2);
-  cVector<double> v2(darr);
-
-  std::cout << "v1: " << v1 << "\n";
-  std::cout << "v2: " << v2 << "\n";
-  std::cout << "v1.cross_product(v2): " << v1.cross_product_theta(v2, M_PI_2)
-            << "\n";
-  std::cout << "v1: " << v1 << "\n";
-  std::cout << "v2: " << v2 << "\n";
-  std::cout << "22 * v1: " << 22 * v1 << "\n";
+  try {
+    cVector<int> v1({1, 2, 3}, {2, 2, 2});
+    cVector<int> v2({4, 5, 6}, {1, 1, 1});
+    std::cout << "v1:\n\t" << v1 << "\n";
+    std::cout << "v2:\n\t" << v2 << "\n";
+    std::cout << "v2.norm():\n\t" << v2.norm() << "\n";
+    std::cout << "v2.abs():\n\t" << v2.abs() << "\n";
+    std::cout << "v2.opposite():\n\t" << v2.opposite() << "\n";
+    std::cout << "v2.translate(v1):\n\t" << v2.translate(v1) << "\n";
+    std::cout << "v2.dot_product(v1, pi/6):\n\t" << v2.dot_product(v1, M_PI / 3)
+              << "\n";
+    std::cout << "v2.cross_product_theta(v1, 5/6*pi):\n\t"
+              << v2.cross_product_theta(v1, M_PI / 3) << "\n";
+    std::cout << "v2.cross_product(v1):\n\t" << v2.cross_product(v1) << "\n";
+  } catch (const cExceptions &e) {
+    std::cerr << e.what() << "\n";
+  }
 
   return 0;
 }

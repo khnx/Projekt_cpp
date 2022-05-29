@@ -1,8 +1,11 @@
-#ifndef CLASS_CDYNAMICARRAY
-#define CLASS_CDYNAMICARRAY 1
+#ifndef CLASS_DYNAMIC_ARRAY
+#define CLASS_DYNAMIC_ARRAY 1
 
 #include <cstdlib>
 #include <iostream>
+#include <stdexcept>
+
+#include "cExceptions.h"
 
 // -------------------- CLASS --------------------
 
@@ -14,9 +17,10 @@ private:
 
 public:
   // Constructors.
-  cDynamicArray();
-  cDynamicArray(const T[], const size_t);
-  cDynamicArray(const cDynamicArray<T> &);
+  cDynamicArray();                         // Empty.
+  cDynamicArray(std::initializer_list<T>); // Init with object {}.
+  cDynamicArray(const T[], const size_t);  // Init with array.
+  cDynamicArray(const cDynamicArray<T> &); // Init with cDynamicArray.
 
   // Operators.
   const T operator[](const size_t) const;

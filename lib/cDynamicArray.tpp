@@ -7,6 +7,17 @@ template <typename T> cDynamicArray<T>::cDynamicArray() {
 }
 
 template <typename T>
+cDynamicArray<T>::cDynamicArray(std::initializer_list<T> init) {
+  this->p = new T[1];
+  this->cap = 1;
+  this->siz = 0;
+
+  for (size_t i = 0; i < init.size(); i++) {
+    this->push(*(init.begin() + i));
+  }
+}
+
+template <typename T>
 cDynamicArray<T>::cDynamicArray(const T init[], const size_t siz) {
   this->p = new T[1];
   this->cap = 1;
@@ -33,21 +44,23 @@ cDynamicArray<T>::cDynamicArray(const cDynamicArray<T> &darr) {
 template <typename T>
 const T cDynamicArray<T>::operator[](const size_t index) const {
   if (index >= this->siz) {
-    std::cerr << "Error: Array Index Out of Bounds. Exit Failure.\n";
-    exit(EXIT_FAILURE);
+    throw cExceptions("Error: Array Index Out of Bounds.");
+  } else {
+    return this->p[index];
   }
-  return this->p[index];
 }
 
 template <typename T>
 cDynamicArray<T> const
-cDynamicArray<T>::operator=(const cDynamicArray<T> &arr) {
-  for (size_t i = 0; i < arr.siz; i++) {
-    if (this->siz == i) {
-      (*this).push(arr[i]);
-    } else {
-      this->p[i] = arr[i];
-    }
+cDynamicArray<T>::operator=(const cDynamicArray<T> &darr) {
+  // Ditch old p[].
+  delete[] p;
+  // Make new p[] and populate it with darr values.
+  this->p = new T[1];
+  this->cap = 1;
+  this->siz = 0;
+  for (size_t i = 0; i < darr.siz; i++) {
+    this->push(darr.p[i]);
   }
   return *this;
 }
@@ -55,8 +68,8 @@ cDynamicArray<T>::operator=(const cDynamicArray<T> &arr) {
 // -------------------- OTHER --------------------
 
 template <typename T> void cDynamicArray<T>::push(const T entry) {
-  // No space left in the array. Allocate twice more than current size. Rewrite
-  // old values to new array.
+  // No space left in the array. Allocate twice more space than current size.
+  // Rewrite old values to the new array.
   if (this->siz == this->cap) {
     T *temp = new T[2 * this->cap];
 
@@ -64,7 +77,7 @@ template <typename T> void cDynamicArray<T>::push(const T entry) {
       temp[i] = this->p[i];
     }
 
-    delete[] this->p;
+    delete[] this->p; // Delete old p[].
     this->cap *= 2;
     this->p = temp;
   }

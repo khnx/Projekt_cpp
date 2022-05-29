@@ -1,7 +1,8 @@
-#ifndef CLASS_CPOINT
-#define CLASS_CPOINT 1
+#ifndef CLASS_POINT
+#define CLASS_POINT 1
 
 #include <iostream>
+#include <stdexcept>
 
 #include "cDynamicArray.h"
 
@@ -14,6 +15,7 @@ private:
 public:
   // Constructors.
   cPoint();
+  cPoint(const std::initializer_list<T>);
   cPoint(const T[], const size_t);
   cPoint(cDynamicArray<T>);
 
@@ -38,7 +40,5 @@ public:
     return std::cout;
   }
 };
-
-#include "../lib/cPoint.tpp"
 
 #endif
