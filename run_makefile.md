@@ -65,7 +65,7 @@ make
 
 ## Instalacja g++
 
-Follow an online tutorial, like this one: https://www.youtube.com/watch?v=8CNRX1Bk5sY or any else tutorial.
+Podążaj za dowolnym tutorialem dostępnym w Internecie, np.: https://www.youtube.com/watch?v=8CNRX1Bk5sY lub jakimkolwiek innym.
 
 # Linux, Mac
 
