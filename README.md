@@ -2,23 +2,32 @@
 
 ## Punkt
 
-1. Cechy.
+1. Konstruktory.
+
+	- Domyslny, pusty, bez współrzędnych,
+	- Inicjalizowany listą - obiektem postaci {},
+	- Inicjalizowany tablicą [], z podaniem ilości elementówn
+	- Inicjalizowawny tablicą dynamiczną.
+
+2. Cechy.
 
 	- Trzyma współrzędne w dynamicznej tablicy.
 
-2. Dozwolone operacje.
+3. Dozwolone operacje.
 
-	- Dodawanie,
-	- Odejmowanie,
-	- Przypisywanie,
-	- Wypisanie.
+	- Dodawanie punktów,
+	- Odejmowanie punktów,
+	- Przypisywanie innych współrzędnych,
+	- Wypisanie współrzędnych.
 
 ## Wektor
 
 1. Sposoby tworzenia wektorów:
 
-	- Współrzędne wektora.
-	- Współrzędne wektora, punkt zaczepienia.
+	- Inicjalizowany listą - obiektem postaci {} jako współrzędne, punkt początkowy z odpowiednią ilością współrzędnych równych 0.
+	- Inicjalizowany tablicą dynamiczną jako współrzędne punkt początkowy z odpowiednią ilością współrzędnych równych 0.
+	- Inicjalizowany listą - obiektem postaci {} zarówno dla współrzędnych wektora, jak i punktu zaczepienia.
+	- Współrzędne wektora jako tablica dynamiczna, punkt zaczepienia jako punkt.
 	- Dwa punkty, wyliczyć różnicę, zaczepić w pierwszym punkcie.
 
 2. Dozwolone operacje.
@@ -31,8 +40,8 @@
 	- Mnożenie wektorowe z użyciem kąta między wektorami.
 	- Mnożenie wektorowe ze wzoru Sarrusa (wektor z 3 składnikami).
 	- Wektor przeciwny - odwrócenie znaków współrzędnych wektora.
-	- Długość wektora - pierwiastek normy.
 	- Norma
+	- Długość wektora - pierwiastek normy.
 
 3. Metody.
 
