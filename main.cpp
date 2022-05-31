@@ -9,8 +9,8 @@
 int main() {
 
   try {
-    cVector<int> v1({1, 2, 3}, {2, 2, 2});
-    cVector<int> v2({4, 5, 6}, {1, 1, 1});
+    cVector<int> v1({1, 2, 3, 6, 7, 1});
+    cVector<int> v2({4, 5, 6, 7, 3, 1});
     std::cout << "v1:\n\t" << v1 << "\n";
     std::cout << "v2:\n\t" << v2 << "\n";
     std::cout << "v2.norm():\n\t" << v2.norm() << "\n";

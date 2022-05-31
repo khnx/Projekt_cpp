@@ -56,7 +56,7 @@ Aby teraz odpalić program, zamknij sesję PowerShell (nie ma potrzeby, by dłu�
 ```powershell
 cd "C:\Users\radek\Desktop\studia_cpp-main\projekt\"
 ```
-  
+
 Dalej, w PowerShell (upewnij się, że jesteś w folderze, w którym znajduje się plik makefile) wpisz
 
 ```powershell
