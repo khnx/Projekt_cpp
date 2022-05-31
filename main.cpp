@@ -2,12 +2,11 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "include/cDynamicArray.h"
-#include "include/cPoint.h"
 #include "include/cVector.h"
 
 int main() {
 
+  // Example use.
   try {
     cVector<int> v1({1, 2, 3, 6, 7, 1});
     cVector<int> v2({4, 5, 6, 7, 3, 1});
