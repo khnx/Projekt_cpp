@@ -128,6 +128,7 @@ int main() {
     std::cout << "v2.abs():\n\t" << v2.abs() << "\n";
     std::cout << "v2.opposite():\n\t" << v2.opposite() << "\n";
     std::cout << "v2.translate(v1):\n\t" << v2.translate(v1) << "\n";
+    std::cout << "translate_pt(pt, v1):\n\t" << translate_pt(pt, v1) << "\n";
     std::cout << "v2.dot_product(v1, pi/6):\n\t" << v2.dot_product(v1, M_PI / 3)
               << "\n";
     std::cout << "v2.cross_product_theta(v1, 5/6*pi):\n\t"

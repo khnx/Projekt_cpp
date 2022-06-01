@@ -46,6 +46,9 @@ public:
 
   // Friends.
   template <typename U>
+  friend const cPoint<U> translate_pt(cPoint<U> &, const cVector<U> &);
+
+  template <typename U>
   friend const cVector<U> operator*(const U, const cVector<U> &);
 
   template <typename U>
@@ -53,6 +56,20 @@ public:
 };
 
 // -------------------- FRIENDS --------------------
+
+template <typename T>
+const cPoint<T> translate_pt(cPoint<T> &pt, const cVector<T> &vec) {
+  if (pt.get_coord().size() != vec.get_vec().size()) {
+    throw cExceptions(
+        "Error: Invalid Dimiensions of Vector or Point in translate_pt().");
+  }
+  cDynamicArray<T> temp(pt.get_coord());
+  for (size_t i = 0; i < pt.get_coord().size(); i++) {
+    temp.push(temp[i] + vec.get_vec()[i], i);
+  }
+  pt.set_coord(temp);
+  return pt;
+}
 
 template <typename T>
 const cVector<T> operator*(const T scalar, const cVector<T> &v) {
