@@ -5,20 +5,10 @@
 template <typename T> cVector<T>::cVector(const std::initializer_list<T> init) {
   cDynamicArray<T> temp_vec(init);
   this->vec = temp_vec;
-
-  cDynamicArray<T> temp;
-  temp.fill(0, init.size());
-  cPoint<T> origin(temp);
-  this->origin = origin;
 }
 
 template <typename T> cVector<T>::cVector(const cDynamicArray<T> &darr) {
   this->vec = darr;
-
-  cDynamicArray<T> temp;
-  temp.fill(0, darr.size());
-  cPoint<T> origin(temp);
-  this->origin = origin;
 }
 
 template <typename T>
@@ -29,21 +19,10 @@ cVector<T>::cVector(const std::initializer_list<T> init1,
         "Error: Invalid Size of Parameters Inside cVector's Constructor.");
   }
 
-  cDynamicArray<T> temp_vec(init1);
-  this->vec = temp_vec;
-  cPoint<T> temp_pt(init2);
-  this->origin = temp_pt;
-}
-
-template <typename T>
-cVector<T>::cVector(const cDynamicArray<T> &darr, const cPoint<T> &origin) {
-  if (darr.size() != origin.get_coord().size()) {
-    throw cExceptions(
-        "Error: Invalid Size of Parameters Inside cVector's Constructor.");
-  }
-
-  this->vec = darr;
-  this->origin = origin;
+  cPoint<T> pt1(init1);
+  cPoint<T> pt2(init2);
+  cPoint<T> diff = pt2 - pt1;
+  this->vec = diff.get_coord();
 }
 
 template <typename T>
@@ -52,21 +31,13 @@ cVector<T>::cVector(const cPoint<T> &origin, const cPoint<T> &ending) {
     throw cExceptions(
         "Error: Invalid Size of Parameters Inside cVector's Constructor.");
   }
-
   cPoint<T> diff = ending - origin;
-
-  cDynamicArray<T> diff_vec_cp(diff.get_coord());
-  this->vec = diff_vec_cp;
-  this->origin = origin;
+  this->vec = diff.get_coord();
 }
 
 // -------------------- GET/SET --------------------
 template <typename T> const cDynamicArray<T> cVector<T>::get_vec() const {
   return this->vec;
-}
-
-template <typename T> const cPoint<T> cVector<T>::get_origin() const {
-  return this->origin;
 }
 
 template <typename T>
@@ -76,17 +47,6 @@ const bool cVector<T>::set_vec(const cDynamicArray<T> &vec) {
   }
 
   this->vec = vec;
-  return true;
-}
-
-template <typename T>
-const bool cVector<T>::set_origin(const cPoint<T> &origin) {
-  if (origin.get_coord().size() != this->origin.get_coord().size()) {
-    throw cExceptions("Error: Invalid Size of cPoint Inside set_origin().");
-    return false;
-  }
-
-  this->origin = origin;
   return true;
 }
 
@@ -101,7 +61,6 @@ const cVector<T> cVector<T>::operator+(const cVector<T> &v) const {
 
   cVector temp(this->vec);
   temp.vec.fill(0, this->vec.size());
-  temp.origin = this->origin;
 
   for (size_t i = 0; i < this->vec.size(); i++) {
     temp.vec.push(this->vec[i] + v.vec[i], i);
@@ -119,7 +78,6 @@ const cVector<T> cVector<T>::operator-(const cVector<T> &v) const {
 
   cVector temp(this->vec);
   temp.vec.fill(0, this->vec.size());
-  temp.origin = this->origin;
 
   for (size_t i = 0; i < this->vec.size(); i++) {
     temp.vec.push(this->vec[i] - v.vec[i], i);
@@ -130,13 +88,11 @@ const cVector<T> cVector<T>::operator-(const cVector<T> &v) const {
 template <typename T>
 const cVector<T> cVector<T>::operator=(const cVector<T> &v) {
   // Allow only assignment of vectors of the same size.
-  if (this->vec.size() != v.get_vec().size() ||
-      this->origin.get_coord().size() != v.origin.get_coord().size()) {
+  if (this->vec.size() != v.get_vec().size()) {
     throw cExceptions(
         "Error: Attempted to Assign to Vector of an Incompatible Size.");
   }
   this->vec = v.vec;
-  this->origin = v.origin;
   return *this;
 }
 
@@ -169,24 +125,10 @@ template <typename T> const double cVector<T>::abs() const {
 
 template <typename T> const cVector<T> cVector<T>::opposite() const {
   cVector temp(this->vec);
-  temp.set_origin(this->origin);
   for (size_t i = 0; i < this->vec.size(); i++) {
     temp.vec.push(this->vec[i] * (-1), i);
   }
   return temp;
-}
-
-template <typename T>
-const cVector<T> cVector<T>::translate(const cVector<T> &v) {
-  if (this->vec.size() != v.vec.size()) {
-    throw cExceptions("Error: Invalid Dimiensions of Vectors in translate().");
-  }
-  cDynamicArray<T> temp(this->origin.get_coord());
-  for (size_t i = 0; i < this->vec.size(); i++) {
-    temp.push(temp[i] + v.vec[i], i);
-  }
-  this->origin.set_coord(temp);
-  return *this;
 }
 
 template <typename T>

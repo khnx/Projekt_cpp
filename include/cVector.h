@@ -13,21 +13,17 @@
 template <class T> class cVector {
 private:
   cDynamicArray<T> vec; // Free vector.
-  cPoint<T> origin;     // Starting point.
 
 public:
   // Constructors.
   cVector(const std::initializer_list<T>);
   cVector(const cDynamicArray<T> &);
   cVector(const std::initializer_list<T>, const std::initializer_list<T>);
-  cVector(const cDynamicArray<T> &, const cPoint<T> &);
   cVector(const cPoint<T> &, const cPoint<T> &);
 
   // Get/set.
   const cDynamicArray<T> get_vec() const;
   const bool set_vec(const cDynamicArray<T> &);
-  const cPoint<T> get_origin() const;
-  const bool set_origin(const cPoint<T> &);
 
   // Operators.
   const cVector<T> operator+(const cVector &) const;
@@ -93,13 +89,6 @@ std::ostream &operator<<(std::ostream &out, const cVector<T> &v) {
       std::cout << ", ";
   }
   std::cout << ")";
-  std::cout << " origin: {";
-  for (size_t i = 0; i < v.origin.get_coord().size(); i++) {
-    std::cout << v.origin.get_coord()[i];
-    if (i < v.origin.get_coord().size() - 1)
-      std::cout << ", ";
-  }
-  std::cout << "}";
   return std::cout;
 }
 

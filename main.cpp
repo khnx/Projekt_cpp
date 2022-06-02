@@ -97,22 +97,17 @@ int main() {
     cVector<int> v1({1, 2, 3});
     cVector<int> v2(darr);
     cVector<int> v3({1, 2, 3}, {4, 5, 6});
-    cVector<int> v4(darr, pt);
-    cVector<int> v5(pt, pt02);
+    cVector<int> v4(pt, pt02);
     std::cout << "v1:\n\t" << v1 << "\n";
     std::cout << "v2:\n\t" << v2 << "\n";
     std::cout << "v3:\n\t" << v3 << "\n";
-    std::cout << "v4:\n\t" << v4 << "\n";
-    std::cout << "v5:\n\t" << v5 << "\n";
+    std::cout << "v5:\n\t" << v4 << "\n";
 
     // Get/set.
     std::cout << "Get/set.\n";
     std::cout << "v1.get_vec():\n\t" << v1.get_vec() << "\n";
-    std::cout << "v1.get_origin():\n\t" << v1.get_origin() << "\n";
     v1.set_vec(darr);
-    v1.set_origin(pt);
     std::cout << "v1.set_vec(darr):\n\t" << v1.get_vec() << "\n";
-    std::cout << "v1.set_origin(darr):\n\t" << v1.get_origin() << "\n";
 
     // Operators.
     std::cout << "Operators.\n";
@@ -127,7 +122,6 @@ int main() {
     std::cout << "v2.norm():\n\t" << v2.norm() << "\n";
     std::cout << "v2.abs():\n\t" << v2.abs() << "\n";
     std::cout << "v2.opposite():\n\t" << v2.opposite() << "\n";
-    std::cout << "v2.translate(v1):\n\t" << v2.translate(v1) << "\n";
     std::cout << "translate_pt(pt, v1):\n\t" << translate_pt(pt, v1) << "\n";
     std::cout << "v2.dot_product(v1, pi/6):\n\t" << v2.dot_product(v1, M_PI / 3)
               << "\n";
